@@ -50,10 +50,13 @@ function agregarProducto() {
       break;
     }
   }
+
   let sumarTotal = carrito.reduce((acc, productos) => {
     return acc + productos.precio;
   }, 0);
+
   console.log(`El total de la compra es: $ ${sumarTotal}`);
+
   alert(`El total de la compra es: $ ${sumarTotal}`);
 }
 
@@ -99,9 +102,32 @@ function eliminarProd() {
       );
     }
   }
+
   let sumarTotal = carrito.reduce((acc, productos) => {
     return acc + productos.precio;
   }, 0);
+
   console.log(`El total de la compra es: $ ${sumarTotal}`);
+
   alert(`El total de la compra es: $ ${sumarTotal}`);
+}
+
+//Funcion para vaciar el carrito usando un confirm. Si la respuesta es true,
+// Se le asigna a carrito un valor de un array vacio [] y al total un sumarTotal un valor de 0.
+
+function vaciarCarrito() {
+  let preguntaVaciar = confirm("¿Desea vaciar el carrito?");
+
+  if (preguntaVaciar) {
+    carrito = [];
+    sumarTotal = 0;
+
+    console.log(
+      `Se ha vaciado el carrito. El total de su compra es de $${sumarTotal}`
+    );
+    console.log("Carrito actual", carrito);
+    alert(
+      `Se ha vaciado el carrito. El total de su compra es de $${sumarTotal}`
+    );
+  }
 }
