@@ -56,3 +56,52 @@ function agregarProducto() {
   console.log(`El total de la compra es: $ ${sumarTotal}`);
   alert(`El total de la compra es: $ ${sumarTotal}`);
 }
+
+//Función para eliminar un producto del carrito. Usando un map recorro el array,
+//le asigno el argumento producto a los objetos y reconfiguro la información del objeto asignandole
+//el valor del id, nombre y precio para devolverlo como string. los uno con .join("\n")
+//con findIndex encuentro el indice del producto que coincide con el id del producto que
+//va a ser igual al numero introducido por el usuario. Si lo encuentra lo elimina del carrito y
+//actualiza el carrito y el total.
+
+function eliminarProd() {
+  let eliminarProducto = confirm("¿Desea eliminar un producto del carrito?");
+  let preguntaEliminar;
+
+  if (eliminarProducto) {
+    preguntaEliminar = Number(
+      prompt(`Ingrese el ID del producto que desea eliminar del carrito:   
+  ${carrito
+    .map(
+      (producto) =>
+        `ID: ${producto.id} - ${producto.nombre} - $${producto.precio}`
+    )
+    .join("\n")}`)
+    );
+
+    const indexProducto = carrito.findIndex(
+      (producto) => producto.id === preguntaEliminar
+    );
+
+    if (indexProducto !== -1) {
+      const productoEliminado = carrito.splice(indexProducto, 1)[0];
+      console.log(
+        `El producto ${productoEliminado.nombre} ha sido eliminado del carrito`
+      );
+      alert(
+        `El producto ${productoEliminado.nombre} ha sido eliminado del carrito`
+      );
+      console.log(`Carrito actual:`, carrito);
+    } else {
+      alert("El ID ingresado no corresponde a ningún producto del carrito");
+      console.log(
+        "El ID ingresado no corresponde a ningún producto del carrito"
+      );
+    }
+  }
+  let sumarTotal = carrito.reduce((acc, productos) => {
+    return acc + productos.precio;
+  }, 0);
+  console.log(`El total de la compra es: $ ${sumarTotal}`);
+  alert(`El total de la compra es: $ ${sumarTotal}`);
+}
