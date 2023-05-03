@@ -74,7 +74,7 @@ function eliminarProd() {
   if (eliminarProducto) {
     preguntaEliminar = Number(
       prompt(`Ingrese el ID del producto que desea eliminar del carrito:   
-  ${carrito
+${carrito
     .map(
       (producto) =>
         `ID: ${producto.id} - ${producto.nombre} - $${producto.precio}`
